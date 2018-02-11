@@ -1,0 +1,21 @@
+{
+    "name": "taylor/elis-api",
+    "description": "Back-End para el registro y asistencia a las clases",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Taylor Kev",
+            "email": "taylorwebk@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.9",
+        "illuminate/database": "^5.5",
+        "endroid/qr-code": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+          "": "src/"
+        }
+    }
+}

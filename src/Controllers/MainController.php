@@ -9,6 +9,7 @@ use \Models\Instructor;
 use \Models\Response;
 use \Models\Estudiante;
 use \Models\Modulo;
+use \Models\Asistencia;
 
 class MainController {
   public static function addInstructor($data) {
@@ -41,8 +42,7 @@ class MainController {
       null
     );
   }
-  public static function addStudent($data)
-  {
+  public static function addStudent($data) {
     $fields = ['nombres', 'apellidos', 'cel', 'correo', 'edad', 'sexo', 'univ', 'modulos'];
     if (!Utils::validateData($data, $fields)) {
       return Response::BadRequest(
@@ -123,6 +123,34 @@ class MainController {
         'estudiantes'   => $estudiantes
       ];
     });
-    return $returndata;
+    return Response::OK('ok', 'Registro de estudiantes cargado', $returndata);
+  }
+  public static function getModules() {
+    return Response::OK('OK', 'Modulos obtenidos... ', Modulo::all());
+  }
+  public static function updateModules($data) {
+    $fields = ['modulos'];
+    if (!Utils::validateData($data, $fields)) {
+      return Response::BadRequest(Utils::implodeFields($fields));
+    }
+    foreach ($data['modulos'] as $modulo) {
+      $mod = Modulo::find($modulo['id']);
+      $mod->nombre  = $modulo['nombre'];
+      $mod->dsc     = $modulo['dsc'];
+      $mod->dia     = $modulo['dia'];
+      $mod->ini     = $modulo['ini'];
+      $mod->fin     = $modulo['fin'];
+      $mod->save();
+    }
+    return self::getModules();
+  }
+  public static function assistance($idstudent, $idmodule) {
+    $fecha = date('Y-m-d');
+    $assistance = Asistencia::create([
+      'estudiante_id' => $idstudent,
+      'modulo_id' => $idmodule,
+      'fecha' => $fecha
+    ]);
+    return Response::OK('Ok', 'Asistencia registrada.', $assistance);
   }
 }

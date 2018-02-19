@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lista Estudiantes Full Stack</title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      position: relative;
+      display: inline-block;
+      width: 8cm;
+      height: 5cm;
+      overflow: hidden;
+      margin: 0.2cm;
+      border-radius: 8px;
+      padding: 0.3cm;
+    }
+    .mod1 {
+      border: 0.8px solid #FE9A76;
+      border-top: 8px solid #FE9A76;
+      border-bottom: 4px solid #FE9A76;
+    }
+    .mod2 {
+      border: 0.8px solid #016936;
+      border-top: 8px solid #016936;
+      border-bottom: 4px solid #016936;
+    }
+    .mod3 {
+      border: 0.8px solid #FF2D44;
+      border-top: 8px solid #FF2D44;
+      border-bottom: 4px solid #FF2D44;
+    }
+    .mod4 {
+      border: 0.8px solid #008080;
+      border-top: 8px solid #008080;
+      border-bottom: 4px solid #008080;
+    }
+    .title-container {
+      text-align: center;
+      margin-bottom: 0.3cm;
+    }
+    .title-image {
+      vertical-align: middle;
+      height: 1cm;
+    }
+    .title {
+      display: inline;
+      font-size: 15px;
+    }
+    .data-container {
+      margin-top: 0.3cm;
+      width: 4.3cm;
+      display: inline-block;
+    }
+    .qr-container {
+      vertical-align: top;
+      display: inline-block;
+      width: 3.5cm;
+      height: 3.5cm;
+      overflow: hidden;
+    }
+    .qr-image {
+      width: 100%;
+    }
+    .bg {
+      position: absolute;
+      height: 5cm;
+      opacity: 0.18;
+    }
+    .maintitle {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+      <div class="container mod<?=$module['id']?>">
+        <img src="http://<?= IP.'/elis-api/qrcodes//'.$module['id'].'.png'?>" class="bg" />
+        <div class="title-container">
+          <img src="http://<?= IP.'/elis-api/qrcodes//'.$module['id'].'.png'?>" class="title-image" />
+          <div class="title"><b><?=$module['nombre'] ?></b></div>
+        </div>
+        <div class="data-container">
+          <p><b>Nombre: </b><br />
+            <i><?=$student['persona']['apellidos'] ?>&nbsp; <?=$student['persona']['nombres'] ?></i>
+          </p>
+          <p><b>Correo: </b> <i><?=$student['correo'] ?></i></p>
+          <p><b>Nro. Cel: </b> <i><?=$student['persona']['cel'] ?></i></p>
+          <p><b><?=$student['univ'] ?></b></p>
+        </div>
+        <div class="qr-container">
+          <img class="qr-image" src="http://<?= $student['modulos'][0]['pivot']['qrurl']?>"/>
+        </div>
+      </div>
+
+</body>
+</html>

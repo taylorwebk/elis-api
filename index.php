@@ -28,6 +28,7 @@ $container = $app->getContainer();
     $logger->pushHandler($file_handler);
     return $logger;
 }; */
+$container['view'] = new \Slim\Views\PhpRenderer('./templates/');
 $capsule = new Illuminate\Database\Capsule\Manager;
 $capsule->addConnection($container->get('settings')['db']);
 $capsule->setAsGlobal();

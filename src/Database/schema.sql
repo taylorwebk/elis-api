@@ -33,9 +33,11 @@ create table modulo(
   id integer not null auto_increment,
   nombre varchar(127),
   dsc varchar(256),
-  dia tinyint,
+  dia varchar(127),
   ini time,
   fin time,
+  whatsapp varchar(255),
+  requisitos varchar(127),
   primary key(id)
 );
 create table instructor_modulo(
@@ -73,7 +75,9 @@ create table asistencia(
   references modulo(id)
   on delete cascade
 );
-insert into modulo (nombre, dsc) values
-('Desarrollo Web con HTML5', 'aprende html5 css3 y Js'),
-('Android', 'desarrollo android'),
-('Laravel', 'aprende a desarrollar laravel');
+-- android miercoles de 16 a 18
+insert into modulo (nombre, dsc, dia, ini, fin, whatsapp, requisitos) values
+('Desarrollo Web con HTML5', 'Desarrolla sitios web con HTML5, CSS3 Y JavaScript.', 'Martes', '14:00:00', '16:00:00', 'https://chat.whatsapp.com/3V09T92yFm94pRqnIPnWIH', 'Ninguno'),
+('Desarrollo de apps con Android y Kotlin', 'Desarrollo de aplicaciones android con el nuevo lenguaje de programación: Kotlin.', 'Miércoles', '16:00:00', '18:00:00', 'https://chat.whatsapp.com/2n4G5faHlvCHUG2b1LkDzt', 'Ninguno'),
+('Curso de Laravel', 'Crea aplicaciones web completas con el framework PHP estrella.', 'Viernes', '10:00:00', '13:00:00', 'https://chat.whatsapp.com/JnKhudw0Mhd6NqO82TvF7M', 'Programación básica en PHP'),
+('ReactJS + Redux: El arte de hacer Front-End', 'Aprende a crear sitios totalmente interactivos con ReactJS y Redux', 'Jueves', '14:00:00', '16:00:00', 'https://chat.whatsapp.com/BOnSNRspVZxES8MUrUOX0d', 'Conocimiento medio de JavaScript');

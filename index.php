@@ -2,7 +2,7 @@
 require './vendor/autoload.php';
 define("PROJECTPATH", __DIR__);
 define("IP", $_SERVER['SERVER_NAME']);
-$dbconfig = parse_ini_file(PROJECTPATH . '/src/Database/config.db');
+$dbconfig = parse_ini_file(PROJECTPATH . '/src/Database/configs.db');
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
 $config['db']['host'] = $dbconfig['host'];

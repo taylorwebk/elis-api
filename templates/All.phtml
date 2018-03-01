@@ -14,7 +14,6 @@
       position: relative;
       display: inline-block;
       width: 8cm;
-      height: 5cm;
       overflow: hidden;
       margin: 0.2cm;
       border-radius: 8px;
@@ -49,11 +48,16 @@
     }
     .title {
       display: inline;
-      font-size: 15px;
+      font-size: 14px;
     }
     .data-container {
+      padding-top: 0.2cm;
       width: 4.3cm;
       display: inline-block;
+      font-size: 14px;
+      word-wrap: break-word;
+      min-height: 3.5cm;
+      position: relative;
     }
     .qr-container {
       vertical-align: top;
@@ -73,6 +77,12 @@
     .maintitle {
       text-align: center;
     }
+    .bot {
+      position: absolute;
+      bottom: 3px;
+      text-align: center;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
@@ -91,9 +101,11 @@
           <p><b>Nombre: </b><br />
             <i><?=$student['apellidos'] ?>&nbsp; <?=$student['nombres'] ?></i>
           </p>
-          <p><b>Correo: </b> <i><?=$student['correo'] ?></i></p>
-          <p><b>Nro. Cel: </b> <i><?=$student['cel'] ?></i></p>
-          <p><b><?=$student['univ'] ?></b></p>
+          <p><b>Correo: </b><br /><i><?=$student['correo'] ?></i></p>
+          <p><b>Cel: </b> <i><?=$student['cel'] ?></i></p>
+          <div class="bot">
+            <p><b><?=$student['univ'] ?></b></p>
+          </div>
         </div>
         <div class="qr-container">
           <img class="qr-image" src="http://<?= $student['qrurl']?>"/>

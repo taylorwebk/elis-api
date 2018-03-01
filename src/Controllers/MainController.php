@@ -49,12 +49,6 @@ class MainController {
         Utils::implodeFields($fields)
       );
     }
-    if ( (Estudiante::where('correo', $data['correo'])->first()) ) {
-      return Response::Unauthorized(
-        'Correo duplicado',
-        'Ups... Parece que alguien ya ha usado este correo para registrarse.'
-      );
-    }
     $persona = Persona::create(
       [
         'nombres'   => $data['nombres'],

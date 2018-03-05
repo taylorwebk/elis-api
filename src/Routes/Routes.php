@@ -59,3 +59,13 @@ $app->get('/student', function (Request $req, Response $res) {
   $resdata = MC::getStudents();
   return $res->withJson($resdata);
 });
+$app->delete('/student/{idmodule}/{idstudent}', function (Request $req, Response $res, $args) {
+  $idstudent = (int)$args['idstudent'];
+  $idmodule = (int)$args['idmodule'];
+  $resdata = MC::deleteStudent($idstudent, $idmodule);
+  return $res->withJson($resdata);
+});
+$app->put('/student', function (Request $req, Response $res) {
+  $resdata = MC::updateStudent($req->getParsedBody());
+  return $res->withJson($resdata);
+});

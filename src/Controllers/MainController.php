@@ -81,6 +81,31 @@ class MainController {
       null
     );
   }
+  public static function deleteStudent($idstudent, $idmodule) {
+    $est = Estudiante::find($idstudent);
+    $est->modulos()->detach($idmodule);
+    return Response::OK(
+      'Todo OK',
+      'Estudiante Eliminado',
+      null
+    );
+  }
+  public static function updateStudent($data) {
+    $fields = ['id', 'nombres', 'apellidos', 'cel', 'correo', 'edad', 'univ'];
+    if (!Utils::validateData($data, $fields)) {
+      return Response::BadRequest(Utils::implodeFields($fields));
+    }
+    $student = Estudiante::find($data['id']);
+    $student->persona->nombres = $data['nombres'];
+    $student->persona->apellidos = $data['apellidos'];
+    $student->persona->cel = $data['cel'];
+    $student->persona->save();
+    $student->correo = $data['correo'];
+    $student->edad = $data['edad'];
+    $student->univ = $data['univ'];
+    $student->save();
+    return $student;
+  }
   public static function getStudents() {
     $modulos = Modulo::with(['instructores.persona', 'estudiantes.persona'])->get();
     $returndata = $modulos->map(function($modulo, $key) {
